@@ -1,0 +1,37 @@
+---
+title: "Example Project Task 1"
+author: "Ben Woodruff"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+We'll be loading the intensities of bulbs about 2100 hours after they were turned on. 
+
+```{r}
+#Use the code below to load the data4led package to your current R session.
+library(data4led)
+
+#Use the code below to load the data for all the bulbs at a time near 2100 hours.
+dist <- led_time(2100)
+head(dist)
+```
+
+Note that the actual time is 2104 hours.
+
+## Including Plots
+
+
+Here is a histogram showing the distribution of intensities of bulbs about 2100 hours after they were turned on. 
+
+```{r pressure, echo=FALSE}
+hist(dist$percent_intensity)
+```
+
+Notice how most of the bulbs (all but 1) have an intensity above 100%.  The bulbs got brighter.
+
