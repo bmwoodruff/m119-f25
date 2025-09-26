@@ -1,0 +1,47 @@
+---
+title: "Example Project Task 2"
+author: "Ben Woodruff"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+add this later....
+
+
+## Examine f0
+
+Let's examine happens with the parameters for $f_0(L; a,b) = \frac{1}{b-a}$. 
+In the plot below we'll change $a$ from 99 to 90.
+
+```{r}
+f0 <- function(L,a=0,b=1){
+  # Make sure a < b when using this function.
+  ifelse(L < a,NaN, ifelse(L <= b, 1/(b-a), NaN))
+}
+
+a <- 99
+b <- 105
+L <- seq(a,b,0.1)
+y <- f0(L,a,b)
+
+par(mfrow=c(1,2),mar=c(2.5,2.5,1,0.25))
+plot(L,y,type='l',xlim=c(90,110), ylim = c(0,1))
+mtext('For f0: a=99, b=105', side = 3, line = 0)
+
+a <- 90
+L <- seq(a,b,0.1)
+y <- f0(L,a,b)
+
+plot(L,y,type='l',xlim=c(90,110), ylim = c(0,1))
+mtext('change a=90 (keep b=105)', side = 3, line = 0)
+
+
+```
+
+Note that $a$ controls the left side of where the function takes on a nonzero value.  Also, as $a$ gets further from $b$, the height drops. 
