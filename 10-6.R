@@ -96,3 +96,57 @@ uniroot(function(x) {f2(x)-97} ,c(0,20000))$root
 uniroot(function(x) {f5(x)-95} ,c(0,20000))$root
 #What is the intensity of the bulb after 25000 hours?
 f5(25000)
+
+
+p <- function(x,lambda=2){
+  # x must be a whole number
+  (lambda^x/factorial(x))*exp(-lambda)
+}
+
+p(1,lambda=1)
+p(0,lambda=1)
+p(2,lambda=1)
+p(3,lambda=1)
+#P(Y>1)
+1 - ( p(0,lambda=1) + p(1,lambda=1) )
+inputs <- seq(2,100)
+sum(p(inputs, lambda=1))
+
+inputs <- seq(0,20)
+inputs
+p(inputs, lambda=1)
+#The probability that 0<=Y<=20
+sum(p(inputs, lambda=1))
+
+
+# Group Activity
+sum(p(0:7, lambda = 3))
+
+
+lambdas <- seq(6,8,0.1)
+plot(lambdas, p(7, lambdas))
+
+
+
+## Three year stuff
+p.3v1 <- function(x,lambda=2){
+  # each element of x must be a whole number
+  prod((lambda^x/factorial(x))*exp(-lambda))
+}
+
+p.3v2 <- function(x1,x2,x3,lambda=2){
+  # x1, x2, and x3 must be whole numbers
+  (lambda^(x1+x2+x3)/(factorial(x1)*factorial(x2)*factorial(x3)))*exp(-3*lambda)
+}
+
+
+#The probability of 4 Florida tropical storms this year, 4 Florida tropical storms next year, and 8 Florida tropical storms the year after (using $\lambda = 2$ as assumed).
+p.3v1(c(4,4,8))
+#The same probability as above, using the other version
+p.3v2(4,4,8)
+#The same probabilty as above by just multiplying probabilities of independent events together. 
+p(4)*p(4)*p(8)
+
+#The probability of 2 Florida tropical storms this year, 5 Florida tropical storms next year, and 3 Florida tropical storms the year after.
+p.3v1(c(2,5,3))
+
